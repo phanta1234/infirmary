@@ -39,14 +39,19 @@
 									class="icon-bar"></span>
 							</button>
 						</div>
-						<div class="collapse navbar-collapse navbar-right" id="myNavbar">
+						<div class="collapse navbar-collapse navbar-left" id="myNavbar">
 							<ul class="nav navbar-nav">
 								<li class="active" data-toggle="modal"
 									data-target="#exampleModal"><a href="#banner">Patient</a></li>
-								<li class=""><a href="#service">InMedicine</a></li>
+								<li class=""><a href="#service">Add Medicines</a></li>
 								<li class=""><a href="#contact">OutMedicine</a></li>
-								<li class=""><a href="#testimonial">Student List</a></li>
-								<li class=""><a href="#contact">Stock List</a></li>
+								<li class=""><a href="${pageContext.request.contextPath }/getpatient">Student List</a></li>
+								<li class=""><a href="${pageContext.request.contextPath }/getstock">Stock List</a></li>
+							</ul>
+						</div>
+						<div class="collapse navbar-collapse navbar-right" id="myNavbar">
+							<ul class="nav navbar-nav">
+								<li class=""><a href="${pageContext.request.contextPath }/">Logout</a></li>
 							</ul>
 						</div>
 					</div>

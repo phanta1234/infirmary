@@ -4,6 +4,7 @@ import java.util.Date;
 
 public class Patient {
 
+	int stuid;
 	String date;
 	String name;
 	int age;
@@ -18,8 +19,9 @@ public class Patient {
 	public Patient() {
 	}
 
-	public Patient(String date, String name, int age, String gender, int sapid, String course, String medicine,
+	public Patient(int stuid, String date, String name, int age, String gender, int sapid, String course, String medicine,
 			String chronic_ailment, String allergies, String travel) {
+		this.stuid=stuid;
 		this.date = date;
 		this.name = name;
 		this.age = age;
@@ -30,6 +32,15 @@ public class Patient {
 		this.chronic_ailment = chronic_ailment;
 		this.allergies = allergies;
 		this.travel = travel;
+	}
+
+
+	public int getStuid() {
+		return stuid;
+	}
+
+	public void setStuid(int stuid) {
+		stuid = stuid;
 	}
 
 	public String getDate() {
@@ -114,8 +125,10 @@ public class Patient {
 
 	@Override
 	public String toString() {
-		return "Patient [date=" + date + ", name=" + name + ", age=" + age + ", gender=" + gender + ", sapid=" + sapid
-				+ ", course=" + course + ", medicine=" + medicine + ", chronic_ailment=" + chronic_ailment
-				+ ", allergies=" + allergies + ", travel=" + travel + "]";
+		return "Patient [Stuid=" + stuid + ", date=" + date + ", name=" + name + ", age=" + age + ", gender=" + gender
+				+ ", sapid=" + sapid + ", course=" + course + ", medicine=" + medicine + ", chronic_ailment="
+				+ chronic_ailment + ", allergies=" + allergies + ", travel=" + travel + "]";
 	}
+
+	
 }

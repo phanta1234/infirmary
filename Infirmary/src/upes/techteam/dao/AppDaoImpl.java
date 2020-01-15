@@ -2,10 +2,16 @@ package upes.techteam.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.ParseException;
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.sql.DataSource;
+import upes.techteam.models.Patient;
+import upes.techteam.models.Stock;
 
 public class AppDaoImpl implements AppDao {
 
@@ -46,4 +52,78 @@ public class AppDaoImpl implements AppDao {
 			}
 		}
 	}
-}
+
+	@Override
+	public List<Patient> getPatient() {
+		String SQL = "Select * from Patient";
+		List<Patient> listUsers = new ArrayList<Patient>();
+		Connection conn = null;
+		try{
+			conn = dataSource.getConnection();
+			PreparedStatement ps = conn.prepareStatement(SQL);
+			ResultSet rs =  ps.executeQuery();
+	        while(rs.next()){
+	        	Patient temp = new Patient(
+	        			rs.getInt("Stuid"),
+	        			rs.getString("date"),
+	        			rs.getString("name"),
+	        			rs.getInt("age"),
+	        			rs.getString("gender"),
+	        			rs.getInt("sapid"),
+	        			rs.getString("course"),
+	        			rs.getString("medicine"),
+	        			rs.getString("chronic_ailment"),
+	        			rs.getString("allergies"),
+	        			rs.getString("travel")
+	        			);
+	        	listUsers.add(temp);
+	        }
+	     rs.close();
+	     ps.close();
+	     return listUsers;
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return null;
+		}finally{
+			if (conn != null) {
+				try {
+				conn.close();
+				} catch (SQLException e) {e.printStackTrace();}
+			}
+	}
+	}
+
+	@Override
+	public List<Stock> getstock() {
+		String SQL = "Select * from Stock";
+		List<Stock> liststock = new ArrayList<Stock>();
+		Connection conn = null;
+		try{
+			conn = dataSource.getConnection();
+			PreparedStatement ps = conn.prepareStatement(SQL);
+			ResultSet rs =  ps.executeQuery();
+	        while(rs.next()){
+	        	Stock temp = new Stock(
+	        			rs.getInt("MedId"),
+	        			rs.getString("Medicine"),
+	        			rs.getString("Amount")
+	        			);
+	        	liststock.add(temp);
+	        }
+	     rs.close();
+	     ps.close();
+	     return liststock;
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return null;
+		}finally{
+			if (conn != null) {
+				try {
+				conn.close();
+				} catch (SQLException e) {e.printStackTrace();}
+			}
+	}
+	}
+	}
