@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
-	<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -31,31 +31,32 @@
 		<div class="container-login100">
 			<div class="wrap-login100">
 				<div class="login100-pic js-tilt" data-tilt>
-					<img src="${pageContext.request.contextPath }/files/images/upes.png" alt="IMG">
+					<img
+						src="${pageContext.request.contextPath }/files/images/upes.png"
+						alt="IMG">
 				</div>
 
-				<form:form class="login100-form validate-form" action="uservalues" modelAttribute="credential">
+				<form:form class="login100-form validate-form" action="uservalues"
+					modelAttribute="credential">
 					<span class="login100-form-title"> Admin Login </span>
 
 					<div class="wrap-input100 validate-input"
 						data-validate="Valid email is required: ex@abc.xyz">
 						<form:input class="input100" path="email" name="email"
-							placeholder="Email"/>
-							<small><form:errors path="email" cssStyle="color:red" /></small>
-							<span class="focus-input100"></span>
-						<span class="symbol-input100"> <i class="fa fa-envelope"
-							aria-hidden="true"></i>
+							placeholder="Email" />
+						<small><form:errors path="email" cssStyle="color:red" /></small>
+						<span class="focus-input100"></span> <span class="symbol-input100">
+							<i class="fa fa-envelope" aria-hidden="true"></i>
 						</span>
 					</div>
 
 					<div class="wrap-input100 validate-input"
 						data-validate="Password is required">
-						<form:input class="input100" path="password" type="password" name="password"
-							placeholder="Password"/> 
-							<small><form:errors path="password" cssStyle="color:red" /></small>
-							<span class="focus-input100"></span>
-						<span class="symbol-input100"> <i class="fa fa-lock"
-							aria-hidden="true"></i>
+						<form:input class="input100" path="password" type="password"
+							name="password" placeholder="Password" />
+						<small><form:errors path="password" cssStyle="color:red" /></small>
+						<span class="focus-input100"></span> <span class="symbol-input100">
+							<i class="fa fa-lock" aria-hidden="true"></i>
 						</span>
 					</div>
 

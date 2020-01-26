@@ -7,9 +7,11 @@ import upes.techteam.validator.Validate;
 
 public class Credentials {
 
-	@NotNull(message="This field cannot be blank") @Validate
+	@NotNull(message = "This field cannot be blank")
+	@Validate
 	String email;
-	@NotNull(message="This field cannot be blank") @Password 
+	@NotNull(message = "This field cannot be blank")
+	@Password
 	String password;
 
 	public String getEmail() {

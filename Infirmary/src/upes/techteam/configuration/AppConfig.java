@@ -19,8 +19,9 @@ public class AppConfig {
 		dataSource.setPassword("root");
 		return dataSource;
 	}
-	@Bean(name="DaoBean")
-	public AppDaoImpl AppDAO(){
+
+	@Bean(name = "DaoBean")
+	public AppDaoImpl AppDAO() {
 		return new AppDaoImpl(getDataSource());
 	}
 }

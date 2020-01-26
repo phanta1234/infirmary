@@ -2,32 +2,31 @@ package upes.techteam.models;
 
 public class Stock {
 
-	int medid;
 	String medicine;
-	String amount;
-	public Stock(int medid, String medicine, String amount) {
-		this.medid = medid;
-		this.medicine = medicine;
-		this.amount = amount;
-	}
+	int amount;
+
 	public Stock() {
 	}
-	public int getMedid() {
-		return medid;
-	}
-	public void setMedid(int medid) {
-		this.medid = medid;
-	}
+
 	public String getMedicine() {
 		return medicine;
 	}
+
 	public void setMedicine(String medicine) {
 		this.medicine = medicine;
 	}
-	public String getAmount() {
+
+	public Stock(String medicine, int amount) {
+		super();
+		this.medicine = medicine;
+		this.amount = amount;
+	}
+
+	public int getAmount() {
 		return amount;
 	}
-	public void setAmount(String amount) {
+
+	public void setAmount(int amount) {
 		this.amount = amount;
 	}
 }

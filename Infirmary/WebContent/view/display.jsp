@@ -6,9 +6,32 @@
 <html lang="en">
 
 <head>
+<script>
+	function startTime() {
+		var today = new Date();
+		var h = today.getHours();
+		var m = today.getMinutes();
+		var s = today.getSeconds();
+		m = checkTime(m);
+		s = checkTime(s);
+		document.getElementById('txt').innerHTML = h + ":" + m + ":" + s;
+		var t = setTimeout(startTime, 500);
+	}
+	function checkTime(i) {
+		if (i < 10) {
+			i = "0" + i
+		}
+		; // add zero in front of numbers < 10
+		return i;
+	}
+</script>
 <style type="text/css">
 .coloring {
 	background-color: RGBA(13, 70, 83, 0.78);
+}
+
+#timer {
+	color: green
 }
 </style>
 <meta charset="utf-8">
@@ -25,7 +48,8 @@
 </head>
 
 <body id="myPage" data-spy="scroll" data-target=".navbar"
-	data-offset="60">
+	data-offset="60" onload="startTime()">
+	<div id="txt"></div>
 	<!--banner-->
 	<section id="banner" class="banner">
 		<div class="bg-color">
@@ -43,10 +67,18 @@
 							<ul class="nav navbar-nav">
 								<li class="active" data-toggle="modal"
 									data-target="#exampleModal"><a href="#banner">Patient</a></li>
-								<li class=""><a href="#service">Add Medicines</a></li>
-								<li class=""><a href="#contact">OutMedicine</a></li>
-								<li class=""><a href="${pageContext.request.contextPath }/getpatient">Student List</a></li>
-								<li class=""><a href="${pageContext.request.contextPath }/getstock">Stock List</a></li>
+								<li class=""><a
+									href="${pageContext.request.contextPath }/doctab">Doctor</a></li>
+								<li class=""><a
+									href="${pageContext.request.contextPath }/staffUpdation">Staff</a></li>
+								<li class="" data-toggle="modal" data-target="#addingmedicines"><a
+									href="#">Add Medicines</a></li>
+								<li class=""><a
+									href="${pageContext.request.contextPath }/getpatient">Student
+										List</a></li>
+								<li class=""><a
+									href="${pageContext.request.contextPath }/getstock">Stock
+										List</a></li>
 							</ul>
 						</div>
 						<div class="collapse navbar-collapse navbar-right" id="myNavbar">
@@ -57,6 +89,74 @@
 					</div>
 				</div>
 			</nav>
+
+
+			<!-- Modal -->
+			<div id="addingmedicines" class="modal fade" role="dialog">
+				<div class="modal-dialog">
+
+					<!-- Modal content-->
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal">&times;</button>
+							<h2 class="modal-title">Stock Management</h2>
+						</div>
+						<div class="modal-body">
+							<div class="abc">
+								<br />
+								<h4 align="center">Add Medicines</h4>
+								<div class="form-group">
+									<form name="add_name" id="add_name" action="addingMedicines"
+										method="GET">
+
+										<div class="table-responsive">
+											<table class="table table-bordered" id="dynamic_field">
+												<tr>
+													<td><input type="text" name="medicine[]"
+														placeholder="Enter Medicine"
+														class="form-control name_list" size="0.5" required /></td>
+													<td><input type="text" name="stock[]"
+														placeholder="Enter Stock" class="form-control name_list"
+														size="0.5" required /></td>
+													<td><button type="button" name="add" id="add"
+															class="btn btn-success">Add More</button></td>
+												</tr>
+											</table>
+											<input type="submit" name="submit" id="submit"
+												class="btn btn-info" value="Submit" />
+										</div>
+									</form>
+								</div>
+							</div>
+
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-default"
+								data-dismiss="modal">Close</button>
+						</div>
+					</div>
+
+				</div>
+			</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 			<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
@@ -115,10 +215,21 @@
 									</div>
 								</div>
 								<div class="form-group">
-									<label class="control-label">Medicines Prescribed</label>
+									<label class="control-label">Temperature</label>
 									<div>
-										<textarea class="form-control input-lg" name="medicine"
-											required></textarea>
+										<input type="text" class="form-control input-lg" name="temp"></input>
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="control-label">Blood Pressure</label>
+									<div>
+										<input type="text" class="form-control input-lg" name="bp"></input>
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="control-label">Weight</label>
+									<div>
+										<input type="text" class="form-control input-lg" name="weight"></input>
 									</div>
 								</div>
 								<div class="form-group">
@@ -308,7 +419,9 @@
 							<h4 class="white no-padding">Important Note</h4>
 						</div>
 						<div class="info-sec">
-							<p>All the above provided information will be linked with our back end system so that it can be used efficiently in the future.</p>
+							<p>All the above provided information will be linked with our
+								back end system so that it can be used efficiently in the
+								future.</p>
 						</div>
 					</div>
 				</div>
@@ -324,6 +437,41 @@
 	<script src="${pageContext.request.contextPath }/files/js2/custom.js"></script>
 	<script
 		src="${pageContext.request.contextPath }/files/contactform/contactform.js"></script>
+
+	<script>
+		$(document)
+				.ready(
+						function() {
+							var i = 1;
+							$('#add')
+									.click(
+											function() {
+												i++;
+												$('#dynamic_field')
+														.append(
+																'<tr id="row'+i+'"><td><input type="text" name="medicine[]" placeholder="Enter Medicine" class="form-control name_list" /></td><td><input type="text" name="stock[]" placeholder="Enter Stock" class="form-control name_list" /></td><td><button type="button" name="remove" id="'+i+'" class="btn btn-danger btn_remove">X</button></td></tr>');
+											});
+							$(document).on('click', '.btn_remove', function() {
+								var button_id = $(this).attr("id");
+								$('#row' + button_id + '').remove();
+							});
+							$('#submit').click(function() {
+								$.ajax({
+									url : "name.php",
+									method : "POST",
+									data : $('#add_name').serialize(),
+									success : function(data) {
+										alert(data);
+										$('#add_name')[0].reset();
+									}
+								});
+							});
+						});
+	</script>
+
+
+
+
 
 </body>
 
